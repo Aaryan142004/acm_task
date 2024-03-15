@@ -4,15 +4,29 @@ const { v4: uuidv4 } = require('uuid');
 
 
 exports.getTodo = (req,res)=>{
-    res.status(200).send(data);
+    const newarray= []
+   data.map(element=>{
+    if(element.uid === req.userData.userid){
+        newarray.push(element);
+    }
+
+   })
+    res.status(200).send(newarray);
 }
 
 
 
 exports.postTodo = (req,res)=>{ 
-    
+   
     const newid = uuidv4();
-    const newTodo = Object.assign({id:newid},{todo_name:req.body.data});
+    const userid = req.userData.userid;
+    
+    // const newTodo = Object.assign({id:newid,},{todo_name:req.body.data});
+    const newTodo = {
+        id:newid,
+        uid :userid,
+        todo_name:req.body.data
+    }
     data.push(newTodo);
     
     fs.writeFile(`dev-data/todos.json`,JSON.stringify(data),(err)=>{

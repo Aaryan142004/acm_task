@@ -6,12 +6,15 @@ dotenv.config();
 app.use(express.json());
 app.use(cors());
 const todoRouter = require('./src/routes/todoRoutes');
+const userRouter = require('./src/routes/userRoutes');
+
+
 
 
 
 
 app.use('/todos',todoRouter);
-
+app.use('/users',userRouter);
 
 
 
