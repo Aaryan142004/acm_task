@@ -5,10 +5,9 @@ const checkAuth = (req,res,next) =>{
     try{
         const token = req.headers.authorization.split(' ')[1];
        
-        const decodedData = jwt.verify(token,process.env.JWT_SECRET);
+        const decodedData = jwt.verify(token,JWT_SECRET);
        
         req.userData = {
-
 
             userid:decodedData.userid
         
